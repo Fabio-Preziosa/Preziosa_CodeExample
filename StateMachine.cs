@@ -30,6 +30,9 @@ public class StateMachine : MonoBehaviour
 
     private void FixedUpdate() // Unity method wich runs each frame
     {
+        // At each frame we are going to see in which part of the state machine we are, and we are doing this with
+        // EvaluateSkill() function that is used only to moves in that state machine
+        currentSkill = EvaluateSkill(); 
         CheckInteractingObjects();
         
         // Following the scheme of the state machine in the documentation, each time we are in the Initial Skill we have
