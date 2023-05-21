@@ -9,15 +9,14 @@ public class ManipulatedObject : Object
     
     public void EvaluateInitialState(List<ManipulatedObject> humanObjects)
     {
-        // Takes as input the objects that have been considered active during the skill demonstration
-        // ad fullfill the attribute objInitialState
-        
+        // Takes as input objects that and takes a snapshot of the state fulfilling the objInitialState attribute
+       
         objInitialState = new ArrayList();
 
         ClosePredicate_1 closePredicate_1 = new ClosePredicate_1();
         ClosePredicate_2 closePredicate_2 = new ClosePredicate_2();
 
-        // Adding and evalueting IsGrasped
+        // Adding and evaluating IsGrasped
         closePredicate_1.name = "IsGrasped";
         closePredicate_1.expression = OpenPredicates.IsGrasped;
         closePredicate_1.param1 = this;
@@ -60,18 +59,19 @@ public class ManipulatedObject : Object
     
     public ArrayList EvaluateFinalState()
     {
-        // Differently from the EvaluateInitialState function, this function is used to understand which have been
-        // the post conditions. In this case there is not an attribute of the object to fullfill since the
-        // postconditions are intrinsic to the skill and not of the object
+        // Evaluates the final state of the object based on the initial state and detects the changed predicates.
+        // This function is used to understand the post-conditions of the skill.
+        // Unlike EvaluateInitialState function, there is no attribute to fulfill since the post-conditions
+        // are intrinsic to the skill and not specific to the object itself
         
         ArrayList postConditions = new ArrayList();
         for(int idx = 0; idx < objInitialState.Count; idx++)
         {
             var elem = objInitialState[idx];
             
-            // we are going to check if we are dealing with a predicate of the first or second type
-            // then we are evaluating it and we are taking only the predicates that have changed their value
-            // comparing them to the inital state
+            // Check if we are dealing with a predicate of the first or second type,
+            // then evaluate it and consider only the predicates that have changed their value
+            // compared to the initial state
             
             if(elem.GetType().Equals(typeof(ClosePredicate_1)))
             {
