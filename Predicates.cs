@@ -1,10 +1,9 @@
 public class Object : MonoBehaviour
-{
-    //This is a class which contains the two types of predicates that we can analyze
-    //The only difference is that the first one has just one parameter while the second accept two parameter
-    // each of them is charcaterized by: 1. A name , 2. A funcion, 3. The involved parameters, 4. The result
-    // Remind that a Predicate becomes "close" when it is evaluated
-    
+{ 
+    //In this class, two types of predicates are defined: "ClosePredicate_1" and "ClosePredicate_2." 
+    //The only difference between them is that the former accepts one parameter, while the latter accepts two parameters. 
+    //Each predicate is characterized by a name, a function, the involved parameters, and the result. 
+    //The predicates become "close" when they are evaluated.
      public struct ClosePredicate_1
     {
         public string name;
@@ -29,9 +28,7 @@ public class OpenPredicates : MonoBehaviour
     // This class is used to define the functions associated to each predicate
     // Each function starts with the dichiaration of the parameters using the ManipulatedObject class which
     // gives to each object in the scene the necessary attributes and fuctions for the application
-    // Note that ManipulatedObject is a user created class while Object is a Unity stardard class used to refer
-    // to a physical or conceptual object in the game scene
-
+    
     public static bool IsGrasped(Object obj) // The function returns true if the object is in the left hand or if it is in the robot's gripper
     {
         ManipulatedObject obj1 = (ManipulatedObject) obj;
