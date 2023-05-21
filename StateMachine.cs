@@ -62,7 +62,11 @@ public class StateMachine : MonoBehaviour
         for(int idx=0; idx < leftHandController.interactingObjects.Count; idx++)
         {
             ManipulatedObject consideredObj = leftHandController.interactingObjects[idx].gameObject.GetComponent<ManipulatedObject>();
-            interactingObjectsSM.Add(consideredObj);
+            if (!interactingObjectsSM.Contains(consideredObj))
+            {
+                consideredObj.EvaluateInitialState(humanObjects);
+                interactingObjectsSM.Add(consideredObj);
+            }
         }
     }
 
